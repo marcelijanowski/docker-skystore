@@ -2,6 +2,7 @@ claim:2.1
 view-job-filters:1.26
 cloudbees-folder:4.2.3
 credentials:1.14
+buildgraph-view:1.0
 build-failure-analyzer:1.9.0
 ruby-runtime:0.12
 git:2.3.1
