@@ -1,0 +1,2 @@
+gitlab-hook:1.3.1
+build-monitor-plugin:1.6+build.142
