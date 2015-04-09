@@ -1,3 +1,4 @@
+# SkyStore-Web-CI
 FROM jenkins
 USER root
 
@@ -19,7 +20,6 @@ RUN npm install bower -g
 
 # install ruby, bundler
 RUN apt-get -y install build-essential zlib1g-dev libssl-dev libreadline6-dev libyaml-dev git
-
 ADD http://cache.ruby-lang.org/pub/ruby/2.1/ruby-$INSTALL_RUBY_VERSION.tar.gz /tmp/
 
 RUN cd /tmp && \
