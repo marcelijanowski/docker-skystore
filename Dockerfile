@@ -2,15 +2,23 @@
 FROM jenkins
 USER root
 
-RUN apt-get update -qq && apt-get install -y build-essential
-
-COPY plugins.txt /usr/share/jenkins/plugins.txt
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
-
+# Enviroment variables
 ENV NODE_VERSION 0.12.2
 ENV INSTALL_RUBY_VERSION 2.1.0
 ENV CONFIGURE_OPTS --disable-install-doc
 
+# Update container
+RUN apt-get update -qq && apt-get install -y build-essential
+
+#A Add SSH key
+RUN apt-get -y install openssh-client 
+CMD ssh-keygen -q -t rsa -N '' -f /keys/id_rsa
+
+# Add Jenkins plugings
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
+
+# Install nodejs
 RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
   && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 \
   && npm install -g npm@"$NPM_VERSION" \
@@ -32,8 +40,10 @@ RUN cd /tmp && \
     rm -rf ruby-$INSTALL_RUBY_VERSION && \
     rm -f ruby-$INSTALL_RUBY_VERSION.tar.gz
 
+# Install bundler gem
 RUN gem install bundler --no-ri --no-rdoc
 
+# Install gem needed for project
 COPY Gemfile /usr/share/Gemfile
 RUN cd /usr/share/ && bundler install 
 
