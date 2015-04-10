@@ -11,8 +11,11 @@ ENV CONFIGURE_OPTS --disable-install-doc
 RUN apt-get update -qq && apt-get install -y build-essential
 
 # Add SSH key
-RUN apt-get -y install openssh-client 
-CMD ssh-keygen -q -t rsa -N '' -f /var/jenkins_home/.ssh/id_rsa
+RUN mkdir /var/jenkins_home/.ssh/
+
+# Copy over private key, and set permissions
+COPY id_rsa /var/jenkins_home/.ssh/id_rsa
+COPY id_rsa.pub /var/jenkins_home/.ssh/id_rsa.pub
 
 # Add internal repository to known_hosts
 CMD ssh-keyscan -H git.bskyb.com >> ~/.ssh/known_hosts
