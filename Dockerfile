@@ -12,7 +12,11 @@ RUN apt-get update -qq && apt-get install -y build-essential
 
 # Add SSH key
 RUN apt-get -y install openssh-client 
-CMD ssh-keygen -q -t rsa -N '' -f /keys/id_rsa
+CMD ssh-keygen -q -t rsa -N '' -f /var/jenkins_home/.ssh/id_rsa
+
+# Add internal repository to known_hosts
+CMD ssh-keyscan -H git.bskyb.com >> ~/.ssh/known_hosts
+CMD ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
 # Add Jenkins plugings
 COPY plugins.txt /usr/share/jenkins/plugins.txt
