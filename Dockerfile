@@ -10,7 +10,7 @@ ENV CONFIGURE_OPTS --disable-install-doc
 # Update container
 RUN apt-get update -qq && apt-get install -y build-essential
 
-#A Add SSH key
+# Add SSH key
 RUN apt-get -y install openssh-client 
 CMD ssh-keygen -q -t rsa -N '' -f /keys/id_rsa
 
@@ -24,9 +24,10 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
   && npm install -g npm@"$NPM_VERSION" \
   && npm cache clear
 
+# Install bower as global npm package
 RUN npm install bower -g
 
-# install ruby, bundler
+# Install ruby
 RUN apt-get -y install build-essential zlib1g-dev libssl-dev libreadline6-dev libyaml-dev git
 ADD http://cache.ruby-lang.org/pub/ruby/2.1/ruby-$INSTALL_RUBY_VERSION.tar.gz /tmp/
 
@@ -35,7 +36,7 @@ RUN cd /tmp && \
     cd ruby-$INSTALL_RUBY_VERSION && \
     ./configure && \
     make && \
-    make install && \
+    make install $CONFIGURE_OPTS && \
     cd .. && \
     rm -rf ruby-$INSTALL_RUBY_VERSION && \
     rm -f ruby-$INSTALL_RUBY_VERSION.tar.gz
