@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <hudson>
   <disabledAdministrativeMonitors/>
-  <version>1.0</version>
+  <version>1.609</version>
   <numExecutors>2</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
@@ -15,6 +15,7 @@
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds/>
+  <quietPeriod>5</quietPeriod>
   <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
   <views>
     <hudson.model.AllView>
@@ -32,12 +33,16 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>skystore-authenticate-develop-unit</string>
+        <string>skystore-authenticate-master-unit</string>
         <string>skystore-develop-e2e-chrome</string>
         <string>skystore-develop-unit</string>
         <string>skystore-master-e2e-chrome</string>
         <string>skystore-master-unit</string>
         <string>skystore-phase3-e2e-chrome</string>
         <string>skystore-phase3-unit</string>
+        <string>skystore-player-develop-unit</string>
+        <string>skystore-player-master-unit</string>
       </jobNames>
       <jobFilters/>
       <columns/>
@@ -52,10 +57,14 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>skystore-authenticate-develop-unit</string>
+        <string>skystore-authenticate-master-unit</string>
         <string>skystore-develop-e2e-chrome</string>
         <string>skystore-develop-unit</string>
         <string>skystore-master-e2e-chrome</string>
         <string>skystore-master-unit</string>
+        <string>skystore-player-develop-unit</string>
+        <string>skystore-player-master-unit</string>
       </jobNames>
       <jobFilters/>
       <columns>
